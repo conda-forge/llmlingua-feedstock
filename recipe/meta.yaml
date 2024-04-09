@@ -1,5 +1,5 @@
 {% set name = "llmlingua" %}
-{% set version = "0.2.1" %}
+{% set version = "0.2.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/llmlingua-{{ version }}.tar.gz
-  sha256: a892093a945ea8ac5f06e84481ef63fa1eeabdbcddb268ad9a7d2524bdc84718
+  sha256: 1a0caedd8d5a65512a85dadb6bfda6f5b3c4b45e5cb9e7b1c6009573f9058572
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
