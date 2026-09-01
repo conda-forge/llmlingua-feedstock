@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: llmlingua
+  version: 0.2.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/llmlingua-${{ version }}.tar.gz
+  sha256: 1a0caedd8d5a65512a85dadb6bfda6f5b3c4b45e5cb9e7b1c6009573f9058572
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - transformers >=4.26.0
+    - accelerate
+    - pytorch
+    - tiktoken
+    - nltk
+    - numpy
+
+tests:
+  - python:
+      imports:
+        - llmlingua
+      pip_check: true
+      python_version:
+        - ${{ python_min }}
+        - "*"
+
+about:
+  summary: To speed up LLMs inference and enhance LLMs perceive of key information, compress the prompt and KV-Cache, which achieves up to 20x compression with minimal performance loss.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/microsoft/LLMLingua
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
